@@ -129,6 +129,10 @@ recordings/
 *.gif
 *.mp4
 *.webm
+!src-tauri/icons/*.png
+!src-tauri/icons/*.ico
+!src-tauri/icons/*.icns
+!src-tauri/icons/**/*.png
 
 # =============================================
 # Build artifacts and caches
