@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2.0",
   "productName": "VeilBrowser",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "identifier": "com.veilbrowser.app",
   "build": {
     "devUrl": "http://localhost:3000",
@@ -9,12 +9,12 @@
     "frontendDist": "../frontend/dist"
   },
   "bundle": {
-    "active": false
+    "active": true
   },
   "app": {
     "windows": [
       {
-        "title": "VeilBrowser Phase 0 POC",
+        "title": "VeilBrowser",
         "label": "main",
         "width": 1100,
         "height": 760,
