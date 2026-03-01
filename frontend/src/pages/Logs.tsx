@@ -1,4 +1,4 @@
-import { Component, createSignal, For, onMount, onCleanup, createEffect } from 'solid-js';
+import { Component, createSignal, For, Show, onMount, onCleanup, createEffect } from 'solid-js';
 import { listen } from '@tauri-apps/api/event';
 import MainLayout from '../layouts/MainLayout';
 import { useTranslation } from '../i18n';
