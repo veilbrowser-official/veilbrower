@@ -121,10 +121,20 @@ impl ChromeLauncher {
 
     /// 获取标准 Chrome 可执行文件路径
     fn get_chrome_binary_path() -> Result<PathBuf> {
+        // 1. 优先检查环境变量覆盖
+        if let Ok(env_path) = std::env::var("VEIL_CHROME_PATH") {
+            let path = PathBuf::from(env_path);
+            if path.exists() {
+                return Ok(path);
+            }
+        }
+
+        // 2. 按平台定义的预设路径查找
         #[cfg(target_os = "macos")]
         {
             let paths = [
                 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
                 "/Applications/Chromium.app/Contents/MacOS/Chromium",
             ];
             for p in paths {
@@ -132,35 +142,80 @@ impl ChromeLauncher {
                     return Ok(PathBuf::from(p));
                 }
             }
-            anyhow::bail!("Google Chrome not found on macOS. Please install it.");
         }
         
         #[cfg(target_os = "windows")]
         {
-            let paths = [
+            let mut paths = vec![
                 r#"C:\Program Files\Google\Chrome\Application\chrome.exe"#,
                 r#"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"#,
-                r#"C:\Users\Public\Desktop\Google Chrome.lnk"#, // A bit hacky but works sometimes
+                r#"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"#,
+                r#"C:\Program Files\Microsoft\Edge\Application\msedge.exe"#,
             ];
-            // 简单演示，可以加入注册表查询
+
+            // 增加用户级别安装路径 (Local AppData)
+            if let Ok(local_app_data) = std::env::var("LOCALAPPDATA") {
+                let user_chrome = PathBuf::from(&local_app_data).join(r#"Google\Chrome\Application\chrome.exe"#);
+                let user_edge = PathBuf::from(&local_app_data).join(r#"Microsoft\Edge\Application\msedge.exe"#);
+                if user_chrome.exists() { return Ok(user_chrome); }
+                if user_edge.exists() { return Ok(user_edge); }
+            }
+
             for p in paths {
                 if std::path::Path::new(p).exists() {
                     return Ok(PathBuf::from(p));
                 }
             }
-            anyhow::bail!("Google Chrome not found on Windows. Please install it.");
         }
         
         #[cfg(not(any(target_os = "macos", target_os = "windows")))]
         {
-            let paths = ["/usr/bin/google-chrome", "/usr/bin/chromium", "/usr/bin/chromium-browser"];
+            let binaries = [
+                "google-chrome-stable",
+                "google-chrome",
+                "microsoft-edge-stable",
+                "microsoft-edge",
+                "chromium-browser",
+                "chromium",
+            ];
+            
+            // 尝试在 PATH 中查找
+            for bin in binaries {
+                if let Ok(path) = Self::find_it(bin) {
+                    return Ok(path);
+                }
+            }
+
+            // 兜底常用绝对路径
+            let paths = [
+                "/usr/bin/google-chrome",
+                "/usr/bin/google-chrome-stable",
+                "/usr/bin/microsoft-edge-stable",
+                "/usr/bin/chromium-browser",
+                "/usr/bin/chromium",
+            ];
             for p in paths {
                 if std::path::Path::new(p).exists() {
                     return Ok(PathBuf::from(p));
                 }
             }
-            anyhow::bail!("Chrome/Chromium not found. Please install it.");
         }
+
+        anyhow::bail!("无法找到 Google Chrome 或 Microsoft Edge。请确保已安装浏览器或设置 VEIL_CHROME_PATH 环境变量。");
+    }
+
+    #[cfg(not(any(target_os = "macos", target_os = "windows")))]
+    fn find_it(bin: &str) -> Result<PathBuf> {
+        let output = std::process::Command::new("which")
+            .arg(bin)
+            .output()?;
+        if output.status.success() {
+            let path_str = String::from_utf8(output.stdout)?.trim().to_string();
+            if !path_str.is_empty() {
+                return Ok(PathBuf::from(path_str));
+            }
+        }
+        anyhow::bail!("Not found")
     }
     
     /// 停止所有受管 Chrome 进程
