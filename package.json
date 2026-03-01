@@ -1,0 +1,17 @@
+{
+  "name": "veilbrowser-v2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev": "cd src-tauri && ../frontend/node_modules/.bin/tauri dev",
+    "tauri": "cd src-tauri && ../frontend/node_modules/.bin/tauri"
+  },
+  "description": "VeilBrowser 2.0 - AI-Native Anti-Detect Browser OS",
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  },
+  "dependencies": {
+    "ws": "^8.19.0"
+  }
+}

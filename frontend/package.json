@@ -1,0 +1,32 @@
+{
+  "name": "veilbrowser-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@solidjs/router": "^0.15.4",
+    "@tauri-apps/api": "^2.10.1",
+    "clsx": "^2.1.1",
+    "i18next": "^25.8.10",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "lucide-solid": "^0.474.0",
+    "solid-js": "^1.9.3",
+    "solid-styled-components": "^0.28.5",
+    "tailwind-merge": "^2.6.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.2.7",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.11",
+    "vite-plugin-solid": "^2.11.0"
+  }
+}

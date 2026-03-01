@@ -1,0 +1,33 @@
+{
+  "hash": "b2e5926715c0e",
+  "steps_cache": {
+    "1": {
+      "intent": "打开维基百科首页",
+      "selector": "",
+      "action_type": "navigate",
+      "action_params": {
+        "url": "https://www.wikipedia.org"
+      }
+    },
+    "2": {
+      "intent": "在搜索框中输入搜索词",
+      "selector": "input#searchInput",
+      "action_type": "type",
+      "action_params": {
+        "text": "{{keyword}}"
+      }
+    },
+    "3": {
+      "intent": "发起搜索",
+      "selector": "button.pure-button",
+      "action_type": "click",
+      "action_params": null
+    },
+    "4": {
+      "intent": "等待加载并确认搜索结果",
+      "selector": "3000",
+      "action_type": "wait",
+      "action_params": null
+    }
+  }
+}

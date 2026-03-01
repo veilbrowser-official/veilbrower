@@ -1,0 +1,440 @@
+{
+  "app": {
+    "name": "VeilBrowser",
+    "version": "v2.0"
+  },
+  "nav": {
+    "dashboard": "总控大盘",
+    "taskruns": "任务流水线",
+    "skills": "技能生态库",
+    "contexts": "沙盒容器",
+    "proxies": "代理网络",
+    "extensions": "插件生态",
+    "identities": "身份凭证",
+    "artifacts": "工件库",
+    "logs": "系统日志",
+    "settings": "系统设置",
+    "live": "实时",
+    "sections": {
+      "operate": "中枢调度",
+      "capabilities": "核心能力",
+      "infrastructure": "基础设施",
+      "storage": "业务资产"
+    }
+  },
+  "sidebar": {
+    "status_online": "运行正常",
+    "master_agent": "主智能体"
+  },
+  "settings": {
+    "title": "系统设置",
+    "description": "配置 AI 决策引擎 (LLM)、底层并发参数及系统行为偏好。",
+    "save": "保存配置",
+    "saved": "已保存",
+    "tabs": {
+      "general": "常规设置",
+      "llm": "LLM 模型驱动",
+      "agent": "Agent 运行参数",
+      "advanced": "安全与隐私"
+    },
+    "general": {
+      "title": "常规设置",
+      "desc": "管理客户端的基础显示与交互行为。",
+      "language": "UI 语言",
+      "language_hint": "更改客户端界面的显示语言（需重启或刷新生效）。"
+    },
+    "llm": {
+      "title": "神经中枢配置 (LLM API)",
+      "desc": "配置驱动 Agent 进行决策树推理和页面解析的大语言模型 (推荐使用 GPT-4o 或 Claude 3.5 Sonnet)。",
+      "provider": "AI Provider (大模型供应商)",
+      "base_url": "Base URL (API 代理网关)",
+      "api_key": "API Key (接口密钥)",
+      "api_key_hint": "密钥将在本地被加密存储，永不上传",
+      "model_name": "模型标识 (Model Name)",
+      "fetch_models": "获取模型列表",
+      "fetching": "正在获取...",
+      "fetch_error_missing": "请先填写 Base URL 和 API Key。",
+      "fetch_error": "获取模型列表失败: ",
+      "prompt": "全局任务 System Prompt (注入前缀)"
+    },
+    "agent": {
+      "title": "Agent 执行参数",
+      "desc": "微调多并发环境下的容错率、CDP 通信时延与行为拟真度。",
+      "concurrency": "全局并发上限 (Max Concurrent Sessions)",
+      "concurrency_hint": "极高并发可能导致内存溢出。请根据主机配置调整。",
+      "delay": "模拟鼠标行为延迟 (Humanized Delay)",
+      "delay_hint": "增加点击与输入的延迟，模拟真实人类操作，大幅降低被风控系统检测的概率。",
+      "healing": "自动修复 (Auto-Healing)",
+      "healing_hint": "当 Agent 发现元素匹配失败时，允许自动重新思考并修复执行链，最多重试 3 次。"
+    },
+    "advanced": {
+      "title": "安全与隐私高级设置",
+      "danger": "危险区域",
+      "danger_desc": "修改此区域设置可能导致 Rust 底层崩溃，或者丧失 L1 级内核屏蔽能力。仅供资深极客和开发者使用。",
+      "hybrid": "混合无头模式 (Hybrid Headless)",
+      "hybrid_hint": "隐藏除了 Live Frame 外的所有实体浏览器窗口进程，极限降低 GPU 消耗。",
+      "webrtc": "禁用 WebRTC 泄露防护",
+      "webrtc_hint": "关闭底层的流量嗅探与 IP 覆盖。如果您正在调试代理协议本身，可临时开启此项。"
+    }
+  },
+  "search": {
+    "placeholder": "CMD+K 搜索..."
+  },
+  "dashboard": {
+    "title": "总控大盘",
+    "description": "通过自然语言驱动自动化引擎。每个任务将分配一个独立的 Ephemeral Session (沙盒环境)。",
+    "ephemeral_mode": "临时会话模式",
+    "system_ready": "系统就绪",
+    "mission_assigned": "任务已指派",
+    "target_skill": "目标技能",
+    "allocated_context": "分配上下文",
+    "network_route": "网络路由",
+    "live_browser_frame": "浏览器实时画面",
+    "waiting_cdp": "正在等待 CDP 帧...",
+    "awaiting_command": "等待渲染指令",
+    "current_session_context": "当前会话上下文",
+    "context_id": "上下文 ID",
+    "connection": "连接状态",
+    "socks5_intercepted": "SOCKS5 已接管",
+    "detached": "未连接",
+    "fingerprint": "指纹面貌",
+    "waiting_allocation": "等待分配",
+    "core_footer": "核心: VeilEngine CLI / L1 级内核屏蔽已激活",
+    "chat": {
+      "placeholder": "输入指令给 Agent（例如：帮我爬取并监控...）"
+    }
+  },
+  "common": {
+    "status": {
+      "running": "运行中",
+      "idle": "空闲",
+      "error": "错误",
+      "scraping": "采集",
+      "waiting": "等待中",
+      "completed": "已完成",
+      "failed": "失败",
+      "aborted": "已中断",
+      "active": "激活",
+      "encrypted": "已加密",
+      "synced": "已同步"
+    },
+    "actions": {
+      "launch": "启动",
+      "terminate": "终止",
+      "pause": "暂停",
+      "view": "查看",
+      "cancel": "取消",
+      "delete": "删除",
+      "save": "保存",
+      "copy": "复制",
+      "details": "查看详情"
+    },
+    "empty": "暂无数据",
+    "never": "从未活跃",
+    "no_signal": "无信号",
+    "automation": "自动化",
+    "cpu": "CPU",
+    "ram": "内存",
+    "net": "网络"
+  },
+  "proxy_manager": {
+    "title": "代理网络",
+    "description": "管理 VeilBrowser 基础设施中所有的上游节点，由本地网关 (Local Gateway) 提供底层分发。",
+    "add_node": "添加节点",
+    "add_static": "添加静态节点",
+    "bind_vendor": "绑定代理厂商 API",
+    "empty_manual": "暂无本地静态节点，请点击右上角「添加静态节点」。",
+    "test_success": "节点 {{alias}} 测速完成: {{latency}}ms",
+    "test_failed": "测速失败",
+    "fill_fields": "请填写节点别名和地址",
+    "tabs": {
+      "dynamic": "代理厂商 API (动态)",
+      "manual": "静态节点集群 (手动)"
+    },
+    "table": {
+      "alias": "节点别名",
+      "protocol": "协议",
+      "address": "地址",
+      "geo": "地理位置",
+      "status": "连通性",
+      "actions": "操作"
+    },
+    "table_vendor": {
+      "name": "厂商名称",
+      "type": "代理类型",
+      "balance": "账户余额",
+      "distribution": "提取池分布",
+      "active_ips": "活跃分配 IP"
+    },
+    "footer": {
+      "total_manual": "总计接入: {{count}} 个上游节点",
+      "total_vendor": "总计接入: {{count}} 家服务商",
+      "gateway_status": "网关端口状态",
+      "ready": "就绪"
+    },
+    "status": {
+      "testing": "测速中...",
+      "offline": "离线",
+      "connected": "在线"
+    },
+    "actions": {
+      "test": "测速",
+      "edit": "编辑",
+      "delete": "删除"
+    },
+    "modal": {
+      "title": "添加代理节点",
+      "alias": "节点别名",
+      "protocol": "协议类型",
+      "address": "节点地址 (IP:Port)",
+      "cancel": "取消",
+      "submit": "保存节点"
+    }
+  },
+  "identities": {
+    "title": "身份凭证",
+    "description": "高度隔离的业务密码库与 API 秘钥中心。底层的 Rust 引擎通过严格定义的 Access Grants 在运行时 (Runtime) 进行注入，保障 L1 级隔离。",
+    "add_identity": "新建",
+    "search": "搜索凭证",
+    "empty_accounts": "尚无存储的社媒账号。",
+    "empty_apikeys": "尚无存储的 API 秘钥。",
+    "copy_success": "标识符已复制",
+    "fill_all_fields": "请填写所有字段",
+    "delete_failed": "删除失败",
+    "save_failed": "保存失败",
+    "tabs": {
+      "accounts": "业务社媒账号",
+      "api_keys": "开发者秘钥 (API Keys)"
+    },
+    "table": {
+      "platform": "归属平台",
+      "provider": "服务商",
+      "purpose": "业务用途",
+      "username": "登录账号",
+      "key_prefix": "秘钥前缀",
+      "last_used": "最近调用时间",
+      "status": "状态解析",
+      "actions": "操作"
+    },
+    "status": {
+      "encrypted": "强加密",
+      "active": "生效中",
+      "synced": "已同步"
+    },
+    "modal": {
+      "title": "签发新凭证",
+      "danger_desc": "存入此库的机密数据将受到 L1 级隔离墙保护。大模型 (LLMs) 和自动化流程仅可在授权 (Grants) 下以盲填模式发起请求，原始秘钥绝不会被导出或外泄。",
+      "platform": "平台或服务商",
+      "platform_holder": "例如: twitter.com 或 OpenAI",
+      "username": "用户名 或 秘钥标识",
+      "username_holder": "Username or Key Name",
+      "secret": "私密凭证 (Password/Token)",
+      "secret_holder": "••••••••••••••••",
+      "encryption": "AES-256 底层加密",
+      "cancel": "取消",
+      "submit": "保存"
+    }
+  },
+  "extensions": {
+    "title": "插件生态",
+    "description": "全局 Chrome 插件管理。系统会自动清洗 Manifest 中的不兼容权限（由于 CEF 限制），使其可以直接运行在各个节点沙盒中。",
+    "add_extension": "加载离线插件 (.crx/.zip)",
+    "browse_store": "Chrome 应用商店获取",
+    "empty": "暂无加载的插件。",
+    "table": {
+      "name": "插件名称",
+      "version": "版本",
+      "policy": "注入策略",
+      "status": "状态解析",
+      "actions": "操作"
+    },
+    "policies": {
+      "force_install": "全局强制安装",
+      "optional": "用户可选",
+      "forbidden": "禁用"
+    },
+    "status": {
+      "ready": "就绪",
+      "active": "激活",
+      "patched": "已清洗",
+      "disabled": "已停用",
+      "error": "错误"
+    },
+    "actions": {
+      "enable": "启用",
+      "disable": "停用",
+      "remove": "卸载"
+    }
+  },
+  "contexts": {
+    "title": "沙盒容器",
+    "description": "管理带有独立指纹隔离的物理浏览器沙盒。这是等待调度指令的中性环境节点，每个容器都在 L1 级别的物理隔离中运行。",
+    "create": "创建隔离容器",
+    "fingerprint_status": "指纹防护状态",
+    "never_active": "从未活跃",
+    "empty": "暂无沙盒容器。请先创建一个隔离环境。",
+    "no_proxy": "本机网络 (无代理)",
+    "no_protection": "无洗牌保护 (高危)",
+    "create_failed": "创建沙盒容器失败",
+    "launch_failed": "启动失败",
+    "delete_failed": "删除失败",
+    "input_name": "请输入容器名称",
+    "actions": {
+      "launch": "启动沙盒",
+      "settings": "容器配置",
+      "destroy": "销毁容器"
+    },
+    "modal": {
+      "title": "配置并生成隔离沙盒",
+      "cancel": "取消返回",
+      "submit": "生成沙盒环境",
+      "base_info": "容器基础标识",
+      "name_placeholder": "如: Facebook 养号专用节点 A",
+      "fingerprint_skeleton": "指纹骨架 (OS & Browser)",
+      "network_binding": "绑定网络网关 (可选)",
+      "direct_connect": "直接连接 (本机真实网络 - 高危)",
+      "network_hint": "选择代理节点后，系统将通过 Rust SOCKS5 透明隧道接管全部 UDP/TCP 流量。",
+      "hardware_emulation": "容器硬件仿真 (Hardware Emulation)",
+      "noise_injection": "硬件指纹洗牌 (Noise Injection)",
+      "canvas": {
+        "title": "Canvas 防区",
+        "desc": "对 2D Canvas 指纹哈希进行一致性微偏离"
+      },
+      "webgl": {
+        "title": "WebGL 渲染器",
+        "desc": "伪造显卡 Vendor 与 Unmasked Renderer 信息"
+      },
+      "audio": {
+        "title": "AudioContext",
+        "desc": "基于设备声卡特征的波形注入噪声漂移"
+      },
+      "fonts": {
+        "title": "字体列表与字形",
+        "desc": "防基于字体探测 (Font Probing) 的交叉追踪"
+      }
+    }
+  },
+  "taskruns": {
+    "title": "任务流水线",
+    "description": "监控活跃执行管道、运行中的沙盒容器及 LLM 推理遥测信号。",
+    "test_launch": "测试启动任务",
+    "emergency_stop": "紧急停止",
+    "captcha_badge": "人工接管呼叫 (Captcha)",
+    "tabs": {
+      "active": "活跃管道",
+      "history": "历史记录"
+    },
+    "telemetry": {
+      "title": "执行遥测",
+      "connected": "已连接",
+      "waiting": "等待上下文日志..."
+    },
+    "screencast": {
+      "title": "实时屏幕流"
+    },
+    "manual_intercept": {
+      "title": "需要人工干预",
+      "desc": "目标网站触发了验证码或安全检测。请接管浏览器会话以完成验证。",
+      "button": "接管 CDP 控制权"
+    },
+    "demo": {
+      "twitter_script": "Twitter 批量养号",
+      "ins_script": "Ins 粉丝数据抓取",
+      "just_now": "刚才",
+      "mins_ago": "{{count}} 分钟前"
+    },
+    "empty": "此视图暂无任务。",
+    "modal": {
+      "title": "智能体调度编排",
+      "desc": "在 VeilBrowser AgentOS 中，任务由 LLM 从驾驶舱面板动态发起。您也可以在这里手动触发测试管道。",
+      "force_start": "强制启动测试管道",
+      "cancel": "取消"
+    }
+  },
+  "artifacts": {
+    "title": "工件库",
+    "description": "管理由 Agent 在任务执行过程（浏览、下载、截图）中产生的数据资产。所有文件均被安全沙盒化存储，防止逃逸。",
+    "search_placeholder": "搜索工件名称或归属任务 ID...",
+    "empty": "暂无产出物。Agent 执行任务时产生的截图与报告会在这里归档。",
+    "delete_failed": "删除工件失败",
+    "table": {
+      "filename": "文件名",
+      "source_task": "来源任务",
+      "format": "格式 / 类型",
+      "created_at": "产出时间",
+      "actions": "操作"
+    },
+    "actions": {
+      "download": "下载至本地",
+      "delete": "删除沙盒文件",
+      "preview": "预览",
+      "export": "导出文件"
+    },
+    "preview": {
+      "captured_at": "截取时间",
+      "placeholder": "Base64 解码占位符",
+      "extracted_properties": "提取的 DOM 属性"
+    }
+  },
+  "logs": {
+    "title": "系统日志",
+    "description": "多进程底座全局 Debug 日志。收集自 Rust 核心层、CEF 渲染子进程以及 SolidJS 前端主控。",
+    "live_tail": "实时追踪",
+    "filters": {
+      "all": "全部",
+      "rust_core": "Rust 核心",
+      "cef_workers": "CEF 子进程",
+      "frontend": "前端"
+    }
+  },
+  "sessions": {
+    "title": "活动会话",
+    "description": "监控 Agent 当前分配和调度的底层环境指纹。每一个任务会话 (Session) 都运行在 L1 级别的物理隔离中。",
+    "new_identity": "创建指纹环境",
+    "table": {
+      "name": "会话标识",
+      "os": "模拟系统",
+      "browser": "内核版本",
+      "proxy": "绑定网络",
+      "status": "状态",
+      "actions": "操作"
+    },
+    "features": {
+      "canvas": "Canvas 噪声",
+      "webgl": "WebGL 伪装",
+      "audio": "AudioContext 变换",
+      "fonts": "指纹漂移"
+    }
+  },
+  "skills": {
+    "title": "技能生态库",
+    "description": "自然语言驱动的浏览器自动化。纯 Markdown，零代码。",
+    "new_skill": "新建剧本",
+    "packs": "技能包",
+    "all_categories": "全部分类",
+    "execution_complete": "技能执行完成",
+    "dynamic_inference_warning": "系统将启动 LLM 进行动态推理：该技能尚无 0-Cost 行为缓存或缺少必要参数。",
+    "save_failed": "保存失败",
+    "status": {
+      "ready": "就绪",
+      "scanning": "正在扫描仓库..."
+    },
+    "card": {
+      "params": "{{count}} 参数",
+      "cached": "0-Cost 行为缓存",
+      "run": "运行"
+    },
+    "editor": {
+      "title": "剧本编辑器",
+      "ai_hint_title": "AI 辅助编写可用！(Coming Soon)",
+      "ai_hint_desc": "只需要在这里用纯大白话 (Markdown) 描述业务步骤。系统执行时会自动寻路找按钮并保存为 0 Token 消耗的缓存加速锁。",
+      "cache_title": "什么是行为缓存 (Action Caching)？",
+      "cache_desc": "在首次运行自然语言剧本时，智能体会触发大模型驱动的探索层来映射视觉元素。一旦成功，绝对交互节点将被永久序列化到隐藏缓存中。在跨 100+ 隔离环境顺序执行相同任务时，Rust 引擎将完全绕过大模型，直接执行缓存图，实现真正的零 Token 成本自动化。",
+      "cancel": "取消",
+      "save": "生成执行图",
+      "new_skill_name": "新技能",
+      "new_skill_category": "未分类",
+      "new_skill_template": "# 技能名称: 新技能\n# 描述: 这里写功能描述\n# 所属分类: 未分类\n\n## 输入参数\n- {{param}}: 参数描述\n\n## 执行步骤\n1. 第一步动作..."
+    }
+  }
+}

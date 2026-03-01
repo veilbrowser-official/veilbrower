@@ -1,0 +1,173 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-mac:
+    name: Build macOS
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        arch: [x64, arm64]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Rebuild Native Modules
+        run: |
+          # Explicitly install sharp for the target architecture (crucial for cross-arch builds on Mac)
+          npm install --os=darwin --cpu=${{ matrix.arch }} sharp
+          # Rebuild other native modules
+          npm rebuild --platform=darwin --arch=${{ matrix.arch }} better-sqlite3 bufferutil utf-8-validate ssh2
+          npx electron-builder install-app-deps --arch ${{ matrix.arch }}
+        env:
+          npm_config_arch: ${{ matrix.arch }}
+
+      - name: Build Frontend/Main
+        run: npm run build
+
+      - name: Package macOS
+        # 仅打包不发布
+        run: npx electron-builder --mac --${{ matrix.arch }} --publish never
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-artifacts-${{ matrix.arch }}
+          path: |
+            release/*.dmg
+            release/*.zip
+            release/*.blockmap
+          retention-days: 1
+
+  build-win:
+    name: Build Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Rebuild Native Modules
+        run: npx electron-builder install-app-deps --arch x64
+
+      - name: Build Frontend/Main
+        run: npm run build
+
+      - name: Package Windows
+        # 仅打包不发布
+        run: npx electron-builder --win nsis --x64 --publish never
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-artifacts
+          path: |
+            release/*.exe
+            release/*.blockmap
+          retention-days: 1
+
+  build-linux:
+    name: Build Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install Linux System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libgdk-pixbuf2.0-dev libgtk-3-dev libnotify-dev libnss3 libxss1 libasound2t64
+
+      - name: Rebuild Native Modules
+        run: npx electron-builder install-app-deps --arch x64
+
+      - name: Build Frontend/Main
+        run: npm run build
+
+      - name: Package Linux
+        # 仅打包不发布
+        run: npx electron-builder --linux AppImage --x64 --publish never
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-artifacts
+          path: |
+            release/*.AppImage
+            release/*.blockmap
+          retention-days: 1
+
+  publish-release:
+    name: Publish to Public Repo
+    needs: [build-mac, build-win, build-linux]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: List Artifacts
+        run: ls -R artifacts
+
+      - name: Publish to Public Repo
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.PUBLIC_RELEASE_TOKEN }}
+          owner: veilbrowser-official
+          repo: veilbrowser
+          tag: ${{ github.ref_name }}
+          # 关键: 使用公开仓库存在的 commit/branch (如 main)，避免使用私有仓的 SHA
+          commit: main
+          artifacts: "artifacts/*"
+          allowUpdates: true
+          replacesArtifacts: true
+          makeLatest: true
+          body: "Release ${{ github.ref_name }} built from private source."

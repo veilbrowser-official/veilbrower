@@ -1,0 +1,440 @@
+{
+  "app": {
+    "name": "VeilBrowser",
+    "version": "v2.0"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "taskruns": "Task Runs",
+    "skills": "Skill Ecosystem",
+    "contexts": "Contexts",
+    "proxies": "Proxy Network",
+    "extensions": "Extensions",
+    "identities": "Identities",
+    "artifacts": "Artifacts",
+    "logs": "System Logs",
+    "settings": "Settings",
+    "live": "Live",
+    "sections": {
+      "operate": "Operate",
+      "capabilities": "Capabilities",
+      "infrastructure": "Infrastructure",
+      "storage": "Business Assets"
+    }
+  },
+  "sidebar": {
+    "status_online": "Online & Ready",
+    "master_agent": "Master Agent"
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Configure the AI decision engine (LLM), concurrency limits, and system behavior preferences.",
+    "save": "Save Config",
+    "saved": "Saved",
+    "tabs": {
+      "general": "General",
+      "llm": "LLM Engine",
+      "agent": "Agent Runtime",
+      "advanced": "Security & Privacy"
+    },
+    "general": {
+      "title": "General Settings",
+      "desc": "Manage basic display and interaction behaviors of the client.",
+      "language": "UI Language",
+      "language_hint": "Change the client display language (requires restart or refresh)."
+    },
+    "llm": {
+      "title": "Neural Core Configuration (LLM API)",
+      "desc": "Configure the LLM driving the Agent's decision tree and page parsing (GPT-4o or Claude 3.5 Sonnet recommended).",
+      "provider": "AI Provider",
+      "base_url": "Base URL",
+      "api_key": "API Key",
+      "api_key_hint": "Keys are securely encrypted locally and never uploaded.",
+      "model_name": "Model Name",
+      "fetch_models": "Fetch Models",
+      "fetching": "Fetching...",
+      "fetch_error_missing": "Please enter Base URL and API Key first.",
+      "fetch_error": "Failed to fetch models: ",
+      "prompt": "Global System Prompt"
+    },
+    "agent": {
+      "title": "Agent Execution Parameters",
+      "desc": "Fine-tune fault tolerance, CDP latency, and humanization heuristics in high-concurrency environments.",
+      "concurrency": "Max Concurrent Sessions",
+      "concurrency_hint": "High concurrency may lead to OOM. Adjust based on host specs.",
+      "delay": "Humanized Delay (ms)",
+      "delay_hint": "Adds latency to clicks and typing to simulate human operation, massively reducing bot detection rates.",
+      "healing": "Auto-Healing",
+      "healing_hint": "Allows the Agent to dynamically re-evaluate and fix the execution chain up to 3 times upon element mismatch."
+    },
+    "advanced": {
+      "title": "Advanced Security & Privacy",
+      "danger": "Danger Zone",
+      "danger_desc": "Modifying these settings may result in process crashes or compromise L1 fingerprint isolations. For advanced devs only.",
+      "hybrid": "Hybrid Headless",
+      "hybrid_hint": "Hides all physical browser windows except the Live Frame to minimize GPU consumption.",
+      "webrtc": "Disable WebRTC Leak Protection",
+      "webrtc_hint": "Disables underlying traffic sniffing and IP masking. Only use when temporarily debugging proxy protocols."
+    }
+  },
+  "search": {
+    "placeholder": "CMD+K to search..."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "description": "Orchestrate dynamic ephemeral sessions via natural language.",
+    "ephemeral_mode": "Ephemeral Session Mode",
+    "system_ready": "System Ready",
+    "mission_assigned": "MISSION ASSIGNED",
+    "target_skill": "Target Skill",
+    "allocated_context": "Allocated Context",
+    "network_route": "Network Route",
+    "live_browser_frame": "Live Browser Frame",
+    "waiting_cdp": "Waiting for CDP Frame...",
+    "awaiting_command": "Awaiting Render Command",
+    "current_session_context": "Current Session Context",
+    "context_id": "Context ID",
+    "connection": "Connection",
+    "socks5_intercepted": "SOCKS5 Intercepted",
+    "detached": "Detached",
+    "fingerprint": "Fingerprint",
+    "waiting_allocation": "Waiting allocation",
+    "core_footer": "Core: VeilEngine CLI / L1 Kernel Masking Active",
+    "chat": {
+      "placeholder": "Command the agent (e.g., 'Extract product pricing from...')"
+    }
+  },
+  "common": {
+    "status": {
+      "running": "Running",
+      "idle": "Idle",
+      "error": "Error",
+      "scraping": "Scraping",
+      "waiting": "Waiting",
+      "completed": "Completed",
+      "failed": "Failed",
+      "aborted": "Aborted",
+      "active": "Active",
+      "encrypted": "Encrypted",
+      "synced": "Synced"
+    },
+    "actions": {
+      "launch": "Launch",
+      "terminate": "Terminate",
+      "pause": "Pause",
+      "view": "View",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "save": "Save",
+      "copy": "Copy",
+      "details": "View Details"
+    },
+    "empty": "No data yet.",
+    "never": "Never Active",
+    "no_signal": "NO SIGNAL",
+    "automation": "Automation",
+    "cpu": "CPU",
+    "ram": "RAM",
+    "net": "NET"
+  },
+  "proxy_manager": {
+    "title": "Proxy Network",
+    "description": "Manage all upstream nodes in the VeilBrowser infrastructure, with distribution provided by the Local Gateway.",
+    "add_node": "Add Node",
+    "add_static": "Add Static Node",
+    "bind_vendor": "Bind Vendor API",
+    "empty_manual": "No local static nodes yet. Click 'Add Static Node' to get started.",
+    "test_success": "Node {{alias}} test complete: {{latency}}ms",
+    "test_failed": "Test failed",
+    "fill_fields": "Please fill in node alias and address",
+    "tabs": {
+      "dynamic": "Vendor APIs (Dynamic)",
+      "manual": "Static Clusters (Manual)"
+    },
+    "table": {
+      "alias": "Alias",
+      "protocol": "Protocol",
+      "address": "Address",
+      "geo": "Geo Location",
+      "status": "Connectivity",
+      "actions": "Actions"
+    },
+    "table_vendor": {
+      "name": "Vendor Name",
+      "type": "Proxy Type",
+      "balance": "Balance",
+      "distribution": "Pool Distribution",
+      "active_ips": "Active IPs"
+    },
+    "footer": {
+      "total_manual": "Total: {{count}} upstream nodes",
+      "total_vendor": "Total: {{count}} vendors",
+      "gateway_status": "Gateway Port Status",
+      "ready": "Ready"
+    },
+    "status": {
+      "testing": "Testing...",
+      "offline": "Offline",
+      "connected": "Online"
+    },
+    "actions": {
+      "test": "Test",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "modal": {
+      "title": "Add Proxy Node",
+      "alias": "Node Alias",
+      "protocol": "Protocol Type",
+      "address": "Node Address (IP:Port)",
+      "cancel": "Cancel",
+      "submit": "Save Node"
+    }
+  },
+  "identities": {
+    "title": "Identities",
+    "description": "Highly isolated vault for business passwords and developer API keys. The underlying Rust engine strictly enforces Access Grants during CDP runtime injections, ensuring L1 isolation.",
+    "add_identity": "Create",
+    "search": "Search Identities...",
+    "empty_accounts": "No stored social accounts yet.",
+    "empty_apikeys": "No stored API keys yet.",
+    "copy_success": "Identifier copied.",
+    "fill_all_fields": "Please fill all fields",
+    "delete_failed": "Delete failed",
+    "save_failed": "Failed to save",
+    "tabs": {
+      "accounts": "Social Accounts",
+      "api_keys": "API Keys"
+    },
+    "table": {
+      "platform": "Platform",
+      "provider": "Provider",
+      "purpose": "Purpose",
+      "username": "Username/Email",
+      "key_prefix": "Key Prefix",
+      "last_used": "Last Used",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "encrypted": "Encrypted",
+      "active": "Active",
+      "synced": "Synced"
+    },
+    "modal": {
+      "title": "Create Identity",
+      "danger_desc": "Values stored here are strictly isolated. LLMs and agents can only request them via explicit Access Grants at runtime. Raw keys are NEVER exported directly.",
+      "platform": "Platform / Provider",
+      "platform_holder": "e.g. twitter.com or OpenAI",
+      "username": "Username / Key Name",
+      "username_holder": "Username or Key Name",
+      "secret": "Secret Value (Password/Token)",
+      "secret_holder": "••••••••••••••••",
+      "encryption": "AES-256 Encrypted",
+      "cancel": "Cancel",
+      "submit": "Save"
+    }
+  },
+  "extensions": {
+    "title": "Extensions",
+    "description": "Manage global Chrome extensions. The system automatically patches manifest incompatibilities (e.g. removing unsupported keys) to support running in CEF.",
+    "add_extension": "Load Unpacked (.crx/.zip)",
+    "browse_store": "Browse Chrome Web Store",
+    "empty": "No extensions loaded yet.",
+    "table": {
+      "name": "Extension Name",
+      "version": "Version",
+      "policy": "Injection Policy",
+      "status": "Readiness",
+      "actions": "Actions"
+    },
+    "policies": {
+      "force_install": "Force Install",
+      "optional": "Optional",
+      "forbidden": "Forbidden"
+    },
+    "status": {
+      "ready": "Ready",
+      "active": "Active",
+      "patched": "Patched",
+      "disabled": "Disabled",
+      "error": "Error"
+    },
+    "actions": {
+      "enable": "Enable",
+      "disable": "Disable",
+      "remove": "Remove"
+    }
+  },
+  "contexts": {
+    "title": "Contexts",
+    "description": "Manage physical browser sandboxes with isolated fingerprints. These are neutral environment nodes awaiting dispatch instructions. Each container runs in L1 deep isolation.",
+    "create": "Create Sandbox",
+    "fingerprint_status": "Fingerprint Status",
+    "never_active": "Never Active",
+    "empty": "No contexts allocated. Create a sandbox container first.",
+    "no_proxy": "Direct Network (No Proxy)",
+    "no_protection": "No Noise Protection (High Risk)",
+    "create_failed": "Failed to create sandbox",
+    "launch_failed": "Launch failed",
+    "delete_failed": "Delete failed",
+    "input_name": "Please enter a container name",
+    "actions": {
+      "launch": "Launch Sandbox",
+      "settings": "Container Config",
+      "destroy": "Destroy Context"
+    },
+    "modal": {
+      "title": "Configure & Generate Sandbox",
+      "cancel": "Cancel",
+      "submit": "Generate Sandbox",
+      "base_info": "Container Identifier",
+      "name_placeholder": "e.g. Facebook Master Node A",
+      "fingerprint_skeleton": "Fingerprint Skeleton (OS & Browser)",
+      "network_binding": "Network Gateway Binding",
+      "direct_connect": "Direct Connection (Real Network - High Risk)",
+      "network_hint": "Once bound, all UDP/TCP traffic will be tunneled through our Rust SOCKS5 gateway.",
+      "hardware_emulation": "Hardware Emulation",
+      "noise_injection": "Hardware Noise Injection",
+      "canvas": {
+        "title": "Canvas Defense",
+        "desc": "Apply consistent micro-offsets to 2D Canvas fingerprint hashes."
+      },
+      "webgl": {
+        "title": "WebGL Renderer",
+        "desc": "Spoof GPU Vendor and Unmasked Renderer information."
+      },
+      "audio": {
+        "title": "AudioContext",
+        "desc": "Inject waveform noise based on device sound card characteristics."
+      },
+      "fonts": {
+        "title": "Font List & Glyphs",
+        "desc": "Prevent cross-tracking via font probing techniques."
+      }
+    }
+  },
+  "taskruns": {
+    "title": "Task Runs",
+    "description": "Monitor active execution pipelines, running sandboxes, and LLM reasoning telemetry.",
+    "test_launch": "Test Launch Task",
+    "emergency_stop": "EMERGENCY STOP",
+    "captcha_badge": "Manual Intercept Required (Captcha)",
+    "tabs": {
+      "active": "Active Pipelines",
+      "history": "History"
+    },
+    "telemetry": {
+      "title": "Execution Telemetry",
+      "connected": "Connected",
+      "waiting": "Awaiting context logs..."
+    },
+    "screencast": {
+      "title": "Context Screencast"
+    },
+    "manual_intercept": {
+      "title": "Manual Intercept Required",
+      "desc": "The target site has triggered a CAPTCHA or security checkpoint. Please take control of the browser session to clear it.",
+      "button": "Transfer CDP Control"
+    },
+    "demo": {
+      "twitter_script": "Twitter Batch Warming",
+      "ins_script": "Ins Follower Scraping",
+      "just_now": "Just now",
+      "mins_ago": "{{count}} mins ago"
+    },
+    "empty": "No tasks in this view.",
+    "modal": {
+      "title": "Agentic Orchestration",
+      "desc": "In VeilBrowser AgentOS, tasks are launched dynamically by the LLM from the Command Center Dashboard. You can also manually trigger a test pipeline here.",
+      "force_start": "Force Test Pipeline",
+      "cancel": "Cancel"
+    }
+  },
+  "artifacts": {
+    "title": "Artifacts",
+    "description": "Manage data assets produced by the Agent during task execution (screenshots, downloads, reports). All files are sandboxed and isolated.",
+    "search_placeholder": "Search by filename or task ID...",
+    "empty": "No artifacts yet. Screenshots and reports generated by the Agent will appear here.",
+    "delete_failed": "Failed to delete artifact",
+    "table": {
+      "filename": "Filename",
+      "source_task": "Source Task",
+      "format": "Format / Type",
+      "created_at": "Created At",
+      "actions": "Actions"
+    },
+    "actions": {
+      "download": "Download",
+      "delete": "Delete File",
+      "preview": "Preview",
+      "export": "Export File"
+    },
+    "preview": {
+      "captured_at": "Captured at",
+      "placeholder": "Base64 Decode Placeholder",
+      "extracted_properties": "Extracted DOM Properties"
+    }
+  },
+  "logs": {
+    "title": "System Logs",
+    "description": "Global debug log stream from all subsystems. Aggregated from Rust core, CEF render workers, and SolidJS frontend.",
+    "live_tail": "Live Tail",
+    "filters": {
+      "all": "ALL",
+      "rust_core": "RUST_CORE",
+      "cef_workers": "CEF_WORKERS",
+      "frontend": "FRONTEND"
+    }
+  },
+  "sessions": {
+    "title": "Active Sessions",
+    "description": "Monitor the underlying ephemeral browser profiles currently orchestrated by the Agent. Each session runs in L1 deep isolation.",
+    "new_identity": "Create Profile",
+    "table": {
+      "name": "Session Alias",
+      "os": "Simulated OS",
+      "browser": "Engine Version",
+      "proxy": "Bound Network",
+      "status": "State",
+      "actions": "Actions"
+    },
+    "features": {
+      "canvas": "Canvas Noise",
+      "webgl": "WebGL Spoofing",
+      "audio": "Audio Mutator",
+      "fonts": "Font Drift"
+    }
+  },
+  "skills": {
+    "title": "Skill Ecosystem",
+    "description": "Natural Language Driven Browser Automation. Pure Markdown, Zero Code.",
+    "new_skill": "New Skill",
+    "packs": "Skill Packs",
+    "all_categories": "All Categories",
+    "execution_complete": "Skill execution complete",
+    "dynamic_inference_warning": "The system will launch LLM for dynamic inference: this skill has no 0-Cost Action Caching or is missing required parameters.",
+    "save_failed": "Save failed",
+    "status": {
+      "ready": "Ready",
+      "scanning": "Scanning Registry..."
+    },
+    "card": {
+      "params": "{{count}} Params",
+      "cached": "0-Cost Action Caching",
+      "run": "Run"
+    },
+    "editor": {
+      "title": "Authoring Workshop",
+      "ai_hint_title": "AI Copilot Available! (Coming Soon)",
+      "ai_hint_desc": "Write business logic in plain Markdown. VeilBrowser will automatically discover selectors at runtime and cache them for zero-token execution.",
+      "cache_title": "What is Action Caching?",
+      "cache_desc": "Upon the first run of a natural language script, the Agent triggers an LLM-driven exploration layer to map visual elements. Once successful, the absolute interaction nodes are permanently serialized into an implicit cache (.action-cache.json). When running identical tasks sequentially across 100+ isolated profiles, the underlying Rust engine bypasses the LLM entirely, executing the cached graph for true 0-Token-cost automation.",
+      "cancel": "Cancel",
+      "save": "Compile to Dynamic Graph",
+      "new_skill_name": "New Skill",
+      "new_skill_category": "Uncategorized",
+      "new_skill_template": "# Skill: New Skill\n# Description: Feature description here\n# Category: Uncategorized\n\n## Input Parameters\n- {{param}}: Parameter description\n\n## Execution Steps\n1. First action..."
+    }
+  }
+}

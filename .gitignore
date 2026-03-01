@@ -1,0 +1,210 @@
+# =============================================
+# VeilBrowser .gitignore
+# =============================================
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# =============================================
+# Build outputs and distribution
+# =============================================
+dist/
+dist-electron/
+release/
+release-new/
+out/
+build/
+*.local
+
+# Electron specific
+.electron-builder-cache/
+.electron/
+
+# =============================================
+# Database and user data
+# =============================================
+# SQLite databases (开发时可选择性忽略，生产环境保留)
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+veilbrowser.db*
+
+# User data directories (根据需要选择性忽略)
+# profiles/
+# userData/
+# data/
+
+# =============================================
+# Logs and debugging
+# =============================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# =============================================
+# IDE and editors
+# =============================================
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.template.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Cursor IDE
+.cursor/
+
+# =============================================
+# OS generated files
+# =============================================
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# =============================================
+# Environment and secrets
+# =============================================
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+
+# Secrets and keys
+*.key
+*.pem
+*.crt
+secrets/
+keys/
+
+# =============================================
+# Testing and coverage
+# =============================================
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# =============================================
+# Temporary files
+# =============================================
+tmp/
+temp/
+.cache/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# =============================================
+# Screenshots and recordings
+# =============================================
+screenshots/
+recordings/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.webm
+
+# =============================================
+# Build artifacts and caches
+# =============================================
+.npm/
+.yarn/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist/
+
+# =============================================
+# Protected files (代码保护相关)
+# =============================================
+protected/
+*.jsc
+hashes/
+
+# =============================================
+# Third-party binaries and browsers
+# =============================================
+third-party/
+
+# =============================================
+# Development artifacts
+# =============================================
+# Playwright browsers (可选，如果不想提交)
+# playwright-core/
+
+# Electron dev builds
+electron-builder-effective-config.yaml
+
+# =============================================
+# Miscellaneous
+# =============================================
+*.tgz
+*.tar.gz
+.cache/
+.aider*
+
+# Phase 0 POC - CEF binaries (too large for GitHub)
+cef-binaries/*.tar.bz2
+cef-binaries/cef_binary_*/
+
+# Tauri Rust build artifacts
+src-tauri/target/
+target/
+target/
+
+# 架构重组后的新增忽略项
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Veil Hook 构建产物
+veil-hook/target/
+
+# 保留 legacy-electron（开源版本不包含）
+legacy-electron/
+
+# 本地测试与临时文件
+test_*.js
+test_*.ts
+a.out
+*.bak
+*.backup
+.aider*
+.gemini.input.history
+.gemini.chat.history.md
+.cursor/
+
+# 开发脚本
+dev.sh
+fix_bundle.sh
+rename_and_sign_cef.sh
+rename_cef.sh
+revert_cef.sh
+icon-preview.html

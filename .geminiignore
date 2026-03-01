@@ -1,0 +1,89 @@
+# .geminiignore - Gemini CLI 上下文过滤
+# 语法同 .gitignore
+
+# Node.js 依赖 (最大问题)
+**/node_modules/
+
+# 构建产物
+dist/
+dist-electron/
+build/
+out/
+
+# Git 相关
+.git/
+.gitignore
+.github/
+
+# 日志文件
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# 测试相关
+coverage/
+test-results/
+.nyc_output/
+.vitest/
+playwright-report/
+
+# 缓存目录
+.cache/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 包管理文件 (Gemini不需要)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+temp/
+tmp/
+*.tmp
+
+# 数据库文件 (如果有本地数据库)
+*.db
+*.sqlite
+*.sqlite3
+
+# 二进制文件
+*.exe
+*.dll
+*.so
+*.dylib
+
+# 证书和密钥
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# 环境变量
+.env
+.env.local
+.env.production
+.env.development
+
+# 文档生成
+docs/api/
+docs/build/
+*.html
+
+# 排除资源文件
+# resources/ (移除此行，因为其中包含重要模板和哈希)
+# services/ (移除此行，这屏蔽了 src/main/services)
+
+# 架构转型归档
+legacy-electron/
+cef-binaries/cef_binary_*/

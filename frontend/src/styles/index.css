@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 265 89% 50%; /* #722ed1 */
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 265 89% 50%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    /* Obsidian Purple Theme: Deep, breathing dark purplish-black */
+    --background: 266 53% 4%; /* #0a0512 - Slightly lifted purple-black for depth */
+    --foreground: 210 40% 98%; /* Crisp, pure off-white for maximum readability */
+ 
+    --card: 266 29% 7%; /* #120d18 - Card background */
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 266 29% 7%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 265 66% 50%; /* #722ed1 - Legacy purple brand color */
+    --primary-foreground: 0 0% 100%;
+ 
+    --secondary: 266 25% 10%; /* #181320 - For sidebars and secondary areas */
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 266 25% 11%; /* #1a1523 */
+    --muted-foreground: 215 20% 65%; /* Neutral, clear gray for secondary text */
+ 
+    --accent: 265 66% 15%; /* Purple accent */
+    --accent-foreground: 265 66% 70%; /* #a855f7 */
+ 
+    --destructive: 0 84% 60%; /* #ff4d4f */
+    --destructive-foreground: 0 0% 100%;
+ 
+    --border: 266 20% 14%; /* Subtle purple-tinted border */
+    --input: 266 20% 14%;
+    --ring: 265 66% 50%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

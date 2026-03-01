@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "src-tauri",
+]
+resolver = "2"
+
+[workspace.dependencies]
+# 通用依赖版本管理
+anyhow = "1.0"

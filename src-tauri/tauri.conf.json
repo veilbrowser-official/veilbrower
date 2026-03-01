@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.tauri.app/config/2.0",
+  "productName": "VeilBrowser",
+  "version": "0.1.0",
+  "identifier": "com.veilbrowser.app",
+  "build": {
+    "devUrl": "http://localhost:3000",
+    "beforeDevCommand": "npm run dev:frontend",
+    "frontendDist": "../frontend/dist"
+  },
+  "bundle": {
+    "active": false
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "VeilBrowser Phase 0 POC",
+        "label": "main",
+        "width": 1100,
+        "height": 760,
+        "resizable": true,
+        "fullscreen": false,
+        "visible": false,
+        "theme": "Dark",
+        "maximizable": true
+      },
+      {
+        "width": 400,
+        "height": 300,
+        "decorations": false,
+        "url": "splashscreen.html",
+        "label": "splashscreen",
+        "resizable": false,
+        "center": true,
+        "transparent": false,
+        "alwaysOnTop": true
+      }
+    ],
+    "security": {
+      "assetProtocol": {
+        "enable": true,
+        "scope": ["$RESOURCE/**"]
+      }
+    }
+  }
+}
